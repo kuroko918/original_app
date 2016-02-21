@@ -1,0 +1,12 @@
+<%= form_for current_user do |f| %>
+  <h2>プロフィール画像</h2>
+  <%= f.file_field :avatar, placeholder: "画像アップロード" %>
+
+  <h2>登録情報</h2>
+  <%= f.text_field :family_name, placeholder: "姓" %>
+  <%= f.text_field :first_name, placeholder: "名" %>
+  <%= f.text_field :family_name_kana, placeholder: "セイ" %>
+  <%= f.text_field :first_name_kana, placeholder: "メイ" %>
+
+  <%= f.submit "送信" %>
+<% end %>
