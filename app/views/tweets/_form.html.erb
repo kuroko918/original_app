@@ -1,9 +1,9 @@
 <%= form_for @tweet do |f| %>
-    <%= f.text_field :name, placeholder: "名前" %>
+    <%= text_field_tag 'tweet[genre_list]', "", placeholder: 'genre' %>
 
-    <%= text_field_tag name = 'tweet[genre_list]', value = "", placeholder: 'genre' %>
+    <%= f.text_area :text, placeholder: "コメント" %>
 
-    <%= text_field_tag name = 'tweet[label_list]', value = "", placeholder: "hobby" %>
+    <%= f.file_field :upload_file %>
 
   <%= f.submit "投稿する"%>
 <% end %>
