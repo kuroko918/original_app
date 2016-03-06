@@ -1,0 +1,20 @@
+<%= form_for(@tweet) do |f| %>
+  <ul>
+    <li>タイトル</li>
+    <%= f.text_field :title, placeholder: "タイトル" %>
+
+    <li>ジャンル</li>
+    <%= f.select :genre, [['グルメ', 'eat'], ['旅行', 'trip'], ['イベント', 'event']], prompt: '選択してください' %>
+
+    <li>タグ</li>
+    <%= f.text_field :tag_list, placeholder: "タグ" %>
+
+    <li>コメント</li>
+    <%= f.text_area :text, placeholder: "コメント" %>
+
+    <li>画像/動画</li>
+    <%= f.file_field :movie %>
+
+    <%= f.submit "投稿する"%>
+  </ul>
+<% end %>

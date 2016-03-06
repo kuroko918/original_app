@@ -1,0 +1,16 @@
+<h4>グルメの最新投稿</h4>
+  <% @tweets.each do |tweet| %>
+  <div style="background-image: url(<%= tweet.movie %>);">
+    <ul>
+      <li><%= tweet.title %></li>
+      <li><%= tweet.text %></li>
+      <li><%= link_to '詳細', tweet_path(tweet.id), method: :get %></li>
+
+      <% if user_signed_in? && current_user.id == tweet.user_id %>
+        <li><%= link_to '編集', edit_tweet_path(tweet.id) %></li>
+
+        <li><%= link_to '削除', tweet_path(tweet.id), method: :delete %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>

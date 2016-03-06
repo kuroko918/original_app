@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  root       "top#index"
+
+  resources  :top
+
   devise_for :users
 
   resources  :users
@@ -6,11 +10,13 @@ Rails.application.routes.draw do
   resources  :tweets do
     collection do
       get 'search'
+      get 'eat'
+      get 'event'
+      get 'trip'
     end
+    resources :comments, only: [:create]
   end
 
-  root       "top#index"
-  get        "top/show"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

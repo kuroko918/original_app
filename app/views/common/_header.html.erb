@@ -1,9 +1,13 @@
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
 <%= link_to "Original APP",root_path %>
 
+<%= form_tag('/tweets/search', method: :get) do %>
+  <input name="keyword" placeholder="検索" type="text" value=""></input>
+  <button title="検索" type="submit"></button>
+<% end %>
+
 <% if user_signed_in? %>
-  <%= form_tag('/tweets/search', method: :get) do %>
-    <input name="" placeholder="検索" type="text" value=""><button title="検索" type="submit"></button></input>
-  <% end %>
   <%= link_to "投稿", new_tweet_path %>
   <%= link_to "マイページ", user_path(current_user) %>
   <%= link_to 'プロフィール変更', edit_user_path(current_user) %>
@@ -12,3 +16,5 @@
   <%= link_to 'サインアップ', new_user_registration_path %>
   <%= link_to 'ログイン', new_user_session_path %>
 <% end %>
+</div>
+  </nav>

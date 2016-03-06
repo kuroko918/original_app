@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
+    @tweets = Tweet.where(user_id: current_user.id).order("id DESC")
   end
 
   def edit

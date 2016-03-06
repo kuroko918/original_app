@@ -6,6 +6,10 @@ class User < ActiveRecord::Base
   def name_kana
     "#{family_name_kana} #{first_name_kana}"
   end
+
+  acts_as_tagger
+  has_many :tweets
+  has_many :comments
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,

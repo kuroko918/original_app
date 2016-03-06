@@ -1,0 +1,14 @@
+<p>タイトルに<%= "#{params[:keyword]}" %>を含む</p>
+<% @tweets1.each do |a| %>
+  <p><%= a.id %></p>
+<% end %>
+
+<p>コメントに<%= "#{params[:keyword]}" %>を含む</p>
+<% @tweets2.each do |b| %>
+  <p><%= b.id %></p>
+<% end %>
+
+<p>タグに<%= "#{params[:keyword]}" %>を含む</p>
+<% @tweets3.each do |c| %>
+  <p><%= c.id %></p>
+<% end %>

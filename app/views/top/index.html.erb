@@ -1,12 +1,56 @@
 <dl>
   <dt>カテゴリー</dt>
-  <dd><%= link_to "音楽", "tags/music_list" %></dd>
-  <dd><%= link_to "イベント", "" %></dd>
-  <dd><%= link_to "旅行", "" %></dd>
+  <dd><%= link_to "グルメ", eat_tweets_path %></dd>
+  <dd><%= link_to "イベント", event_tweets_path %></dd>
+  <dd><%= link_to "旅行", trip_tweets_path, method: :get, genre: "trip" %></dd>
 </dl>
 
-<h4>音楽の最新投稿</h4>
+<h4>グルメの最新投稿</h4>
+  <% @tweets.where("genre = 'eat'").each do |tweet| %>
+  <div style="background-image: url(<%= tweet.movie %>);">
+    <ul>
+      <li><%= tweet.title %></li>
+      <li><%= tweet.text %></li>
+      <li><%= link_to '詳細', tweet_path(tweet.id), method: :get %></li>
+
+      <% if user_signed_in? && current_user.id == tweet.user_id %>
+        <li><%= link_to '編集', edit_tweet_path(tweet.id) %></li>
+
+        <li><%= link_to '削除', tweet_path(tweet.id), method: :delete %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
 <h4>イベントの最新投稿</h4>
+  <% @tweets.where("genre = 'event'").each do |tweet| %>
+  <div style="background-image: url(<%= tweet.movie %>);">
+    <ul>
+      <li><%= tweet.title %></li>
+      <li><%= tweet.text %></li>
+      <li><%= link_to '詳細', tweet_path(tweet.id), method: :get %></li>
+
+      <% if user_signed_in? && current_user.id == tweet.user_id %>
+        <li><%= link_to '編集', edit_tweet_path(tweet.id) %></li>
+
+        <li><%= link_to '削除', tweet_path(tweet.id), method: :delete %></li>
+      <% end %>
+    </ul>
+  </div>
+  <% end %>
 
 <h4>旅行の最新投稿</h4>
+  <% @tweets.where("genre = 'trip'").each do |tweet| %>
+    <div style="background-image: url(<%= tweet.movie %>);">
+      <ul>
+        <li><%= tweet.title %></li>
+        <li><%= tweet.text %></li>
+        <li><%= link_to '詳細', tweet_path(tweet.id), method: :get %></li>
+
+        <% if user_signed_in? && current_user.id == tweet.user_id %>
+          <li><%= link_to '編集', edit_tweet_path(tweet.id) %></li>
+          <li><%= link_to '削除', tweet_path(tweet.id), method: :delete %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>

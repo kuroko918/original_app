@@ -1,0 +1,34 @@
+<div style="background-image: url(<%= @tweet.movie %>);">
+  <ul>
+    <li><%= @tweet.title %></li>
+    <li><%= @tweet.text %></li>
+    <li><%= link_to '詳細', tweet_path(@tweet.id), method: :get %></li>
+
+    <% if user_signed_in? && current_user.id == @tweet.user_id %>
+      <li><%= link_to '編集', edit_tweet_path(@tweet.id) %></li>
+      <li><%= link_to '削除', tweet_path(@tweet.id), method: :delete %></li>
+    <% end %>
+
+  </ul>
+</div>
+
+<div>
+  <% if current_user %>
+    <%= form_tag("/tweets/#{@tweet.id}/comments", method: :post) do %>
+      <textarea cols="30" name="text" placeholder="コメントする" rows="2"></textarea>
+      <input type="submit" value="SENT">
+    <% end %>
+  <% end %>
+</div>
+
+<div>
+  <h4>＜コメント一覧＞</h4>
+    <% if @comments %>
+      <% @comments.each do |comment| %>
+      <p>
+        <storng><%= link_to comment.user.family_name, user_path(comment.user_id), method: :get %>：</strong>
+        <%= comment.text %>
+      </p>
+    <% end %>
+  <% end %>
+</div>

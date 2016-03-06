@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160221193726) do
+ActiveRecord::Schema.define(version: 20160228092539) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer  "user_id",    limit: 4
+    t.integer  "tweet_id",   limit: 4
+    t.text     "text",       limit: 65535
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id",        limit: 4
@@ -34,11 +42,16 @@ ActiveRecord::Schema.define(version: 20160221193726) do
   add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "tweets", force: :cascade do |t|
-    t.string   "name",       limit: 255
-    t.text     "text",       limit: 65535
-    t.text     "image",      limit: 65535
+    t.string   "genre",              limit: 255
+    t.text     "text",               limit: 65535
+    t.text     "title",              limit: 65535
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "movie_file_name",    limit: 255
+    t.string   "movie_content_type", limit: 255
+    t.integer  "movie_file_size",    limit: 4
+    t.datetime "movie_updated_at"
+    t.integer  "user_id",            limit: 4
   end
 
   create_table "users", force: :cascade do |t|
